@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Security | Catálogo y Cotizador</title>
+    <!-- Tailwind CSS para diseño moderno y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wide">Smart <span class="text-blue-500">Security</span></h1>
+            <div id="btn-cotizador-flotante" class="bg-blue-600 px-4 py-2 rounded-lg cursor-pointer font-semibold hover:bg-blue-700 transition">
+                Cotización (<span id="contador-carrito">0</span>)
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Catálogo de Productos (2 Columnas) -->
+        <section class="lg:col-span-2">
+            <h2 class="text-2xl font-bold mb-6 text-slate-900">Catálogo de Productos</h2>
+            <div id="catalogo-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Los productos se inyectarán dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <!-- Panel de Cotizador / Resumen (1 Columna) -->
+        <aside class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-fit sticky top-24">
+            <h3 class="text-xl font-bold mb-4 text-slate-900 border-b pb-2">Tu Cotización</h3>
+            <div id="resumen-cotizacion" class="space-y-4 mb-6">
+                <p class="text-slate-500 text-sm">No has seleccionado ningún producto todavía.</p>
+            </div>
+            <div class="border-t pt-4 flex justify-between items-center font-bold text-lg mb-6">
+                <span>Total Estimado:</span>
+                <span id="precio-total" class="text-blue-600">$0.00</span>
+            </div>
+            <button id="btn-enviar-whatsapp" class="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition flex items-center justify-center gap-2">
+                Solicitar por WhatsApp
+            </button>
+        </aside>
+
+    </main>
+
+    <!-- Scripts de Lógica -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
