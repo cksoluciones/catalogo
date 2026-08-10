@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Security | Catálogo y Cotizador</title>
+    <title>CKSolucionesIT | Catálogo y Cotizador</title>
     <!-- Tailwind CSS para diseño moderno y rápido -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Personalización de scrollbar para un look más tech */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
 
     <!-- Header / Navbar -->
-    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wide">Smart <span class="text-blue-500">Security</span></h1>
-            <div id="btn-cotizador-flotante" class="bg-blue-600 px-4 py-2 rounded-lg cursor-pointer font-semibold hover:bg-blue-700 transition">
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- Se ajustó el enlace de Drive para que funcione como imagen directa -->
+                <img src="https://drive.google.com/uc?export=view&id=1aBOWEqv6NGOWeAyX1UFH18_ZfY6JnOyM" alt="Logo" class="h-12 w-auto bg-white rounded p-1">
+                <h1 class="text-xl font-bold tracking-wide hidden sm:block">CK<span class="text-blue-500">SolucionesIT</span></h1>
+            </div>
+            <div id="btn-cotizador-flotante" class="bg-blue-600 px-5 py-2.5 rounded-lg cursor-pointer font-semibold hover:bg-blue-500 transition shadow-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 Cotización (<span id="contador-carrito">0</span>)
             </div>
         </div>
@@ -24,25 +36,34 @@
         
         <!-- Catálogo de Productos (2 Columnas) -->
         <section class="lg:col-span-2">
-            <h2 class="text-2xl font-bold mb-6 text-slate-900">Catálogo de Productos</h2>
+            <div class="mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Soluciones Tecnológicas Integrales</h2>
+                <p class="text-slate-600 mt-2">Equipos de alto rendimiento, sistemas de punto de venta (POS) e infraestructura de seguridad.</p>
+            </div>
             <div id="catalogo-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Los productos se inyectarán dinámicamente con JavaScript -->
             </div>
         </section>
 
         <!-- Panel de Cotizador / Resumen (1 Columna) -->
-        <aside class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-fit sticky top-24">
-            <h3 class="text-xl font-bold mb-4 text-slate-900 border-b pb-2">Tu Cotización</h3>
-            <div id="resumen-cotizacion" class="space-y-4 mb-6">
-                <p class="text-slate-500 text-sm">No has seleccionado ningún producto todavía.</p>
+        <aside class="lg:sticky lg:top-24 h-fit">
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+                <h3 class="text-xl font-bold mb-4 text-slate-900 border-b pb-3 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Resumen de Cotización
+                </h3>
+                <div id="resumen-cotizacion" class="space-y-4 mb-6 max-h-96 overflow-y-auto pr-2">
+                    <p class="text-slate-500 text-sm text-center py-4 bg-slate-50 rounded-lg border border-dashed border-slate-200">No has seleccionado ningún producto o servicio todavía.</p>
+                </div>
+                <div class="border-t pt-4 flex justify-between items-end mb-6">
+                    <span class="font-semibold text-slate-600 text-sm">Total Estimado:<br><span class="text-xs font-normal">(Sujeto a validación)</span></span>
+                    <span id="precio-total" class="text-2xl font-bold text-blue-700">$0.00</span>
+                </div>
+                <button id="btn-enviar-whatsapp" class="w-full bg-emerald-500 text-white py-3.5 rounded-xl font-bold hover:bg-emerald-600 hover:shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2 text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/></svg>
+                    Cotizar por WhatsApp
+                </button>
             </div>
-            <div class="border-t pt-4 flex justify-between items-center font-bold text-lg mb-6">
-                <span>Total Estimado:</span>
-                <span id="precio-total" class="text-blue-600">$0.00</span>
-            </div>
-            <button id="btn-enviar-whatsapp" class="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition flex items-center justify-center gap-2">
-                Solicitar por WhatsApp
-            </button>
         </aside>
 
     </main>
